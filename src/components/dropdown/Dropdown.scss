@@ -1,0 +1,28 @@
+.dropdown-container{
+    position: relative;
+}
+
+
+.dropdown-content{
+    text-align: left;
+    width: 100%;
+    background-color: white;   
+    color:black;
+
+    &:hover{
+        background-color: #6c757d;   
+        color:white;
+        &:focus {
+            box-shadow:0 0 0 0.2rem rgba(108,117,125,.5) !important
+        }
+    }
+    &:focus {
+        box-shadow: 0 0 0 0 !important;
+    }
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+}

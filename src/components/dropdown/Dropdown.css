@@ -1,0 +1,22 @@
+.dropdown-container {
+  position: relative; }
+
+.dropdown-content {
+  text-align: left;
+  width: 100%;
+  background-color: white;
+  color: black; }
+  .dropdown-content:hover {
+    background-color: #6c757d;
+    color: white; }
+    .dropdown-content:hover:focus {
+      box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5) !important; }
+  .dropdown-content:focus {
+    box-shadow: 0 0 0 0 !important; }
+
+.dropdown-toggle::after {
+  position: absolute;
+  right: 10px;
+  top: 45%; }
+
+/*# sourceMappingURL=Dropdown.css.map */
