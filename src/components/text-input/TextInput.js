@@ -9,7 +9,7 @@ export default class ContentCreator extends Component {
     const { onChange, value, multiline, rows, title }  = this.props
 
     return (
-        <div>
+        <div className="text-input__div">
             <label htmlFor="inp" className="input-container">
 
                 {multiline && (
