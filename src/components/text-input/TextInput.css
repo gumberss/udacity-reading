@@ -53,4 +53,7 @@
   transform-origin: 0 0;
   transition: all .15s ease; }
 
+.text-input__div {
+  padding-bottom: 10px; }
+
 /*# sourceMappingURL=TextInput.css.map */

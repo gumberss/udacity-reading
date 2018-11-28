@@ -19,24 +19,29 @@ export default class ListGroup extends Component {
     }
 
     componentWillReceiveProps({ data }) {
-        if (data) this.onSelect(data[0])
+        if (data && data.length) 
+            this.onSelect(data[0])
     }
 
     render() {
 
-        const { data } = this.props
+        const { data, title } = this.props
         const { selectedName } = this.state
 
         return (
-            <div className="list-group">
-
+            <ul className="list-group">
+                {title && (
+                    <li
+                        className={`list-group-item list-group-item-action text-center disabled`}>
+                        {title}
+                    </li>
+                )}
                 {data && data.map(current => (
-                    <button key={current.name}
+                    <li key={current.name}
                         onClick={() => this.onSelect(current)}
-                        type="button"
-                        className={`list-group-item list-group-item-action ${selectedName === current.name ? 'active' : ''}`}>{current.name}</button>
+                        className={`list-group-item list-group-item-action ${selectedName === current.name ? 'active' : ''}`}>{current.name}</li>
                 ))}
-            </div>
+            </ul>
         );
     }
 }
