@@ -1,0 +1,14 @@
+#content-creator {
+  padding: 20px;
+  padding-left: 0px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 6px; }
+
+.content-creator-footer {
+  flex-flow: row-reverse;
+  margin-right: 0px; }
+
+.content-creator-item {
+  margin-top: 16px; }
+
+/*# sourceMappingURL=ContentCreator.css.map */

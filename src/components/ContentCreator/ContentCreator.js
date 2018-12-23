@@ -7,20 +7,12 @@ import './ContentCreator.css'
 import ListGroup from '../list-group/ListGroup'
 import TextInput from '../text-input/TextInput'
 
-import { handleGetAllCategoriesAction } from '../../actions/Categories'
-
 class ContentCreator extends Component {
 
     state = {
         content: '',
-        category: {}
-    }
-
-    componentDidMount() {
-
-        const { dispatch } = this.props
-
-        dispatch(handleGetAllCategoriesAction())
+        category: {},
+        author: 'Estudante'
     }
 
     onContentChange = e => {
@@ -33,30 +25,43 @@ class ContentCreator extends Component {
     onChangeCategorySelected = category => {
         this.setState({
             category
-        })  
+        })
+    }
+
+    onSubmit = e => {
+        e.preventDefault();
+
     }
 
     render() {
 
         return (
-            <div className="container" id="content-creator">
-                <form >
+            <div id="content-creator">
+                <form onSubmit={this.onSubmit}>
                     <div className="row">
-                        <div className="col-sm-12 col-md-4">
+                        <div className="col-sm-12 col-md-4 content-creator-item">
                             <ListGroup
                                 data={this.props.categories}
                                 onChange={this.onChangeCategorySelected}
+                                title="Selecione a categoria do seu post"
                             />
                         </div>
-                        <div className="col-sm-12 col-md-8">
+                        <div className="col-sm-12 col-md-8 content-creator-item">
                             <TextInput
-                                multiline={true}
-                                rows={5}
+                                multiline
+                                rows={7}
                                 onChange={this.onContentChange}
                                 value={this.state.content}
                                 title="O que gostaria de compartilhar hoje?"
                             />
                         </div>
+                    </div>
+                    <div className="row content-creator-footer">
+                        <button
+                            type="submit"
+                            className="btn btn-outline-primary">
+                            Enviar
+                        </button>
                     </div>
                 </form>
             </div>

@@ -1,4 +1,4 @@
-import call from '../data-services/api'
+import call from '../DataServices/api'
 
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 
@@ -9,7 +9,7 @@ function getCategories(categories) {
     }
 }
 
-export function handleGetAllCategoriesAction() {
+export function handleGetAllCategories() {
     return dispatch => {
         return call('categories')
             .then(x => dispatch(getCategories(x.categories)))

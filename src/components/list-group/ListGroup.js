@@ -24,17 +24,24 @@ export default class ListGroup extends Component {
 
     render() {
 
-        const { data } = this.props
+        const { data, title, style, enableAllCategoryButton } = this.props
         const { selectedName } = this.state
 
         return (
-            <div className="list-group">
-
+            <div className={style ? '' : "list-group row"} style={style}>
+                {title && (<button key='header'
+                    disabled
+                    type="button"
+                    className={`list-group-item list-group-item-action`}>
+                    {title}
+                </button>)}
                 {data && data.map(current => (
                     <button key={current.name}
                         onClick={() => this.onSelect(current)}
                         type="button"
-                        className={`list-group-item list-group-item-action ${selectedName === current.name ? 'active' : ''}`}>{current.name}</button>
+                        className={`list-group-item list-group-item-action ${selectedName === current.name ? 'active' : ''}`}>
+                        {current.name}
+                    </button>
                 ))}
             </div>
         );

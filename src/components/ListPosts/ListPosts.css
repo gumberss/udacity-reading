@@ -1,0 +1,16 @@
+.btn-order {
+  height: 30px;
+  padding: 0px 10px; }
+
+.header {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  padding: 10px 0px;
+  margin: 10px 0px;
+  display: flex;
+  justify-content: center; }
+
+.list-post__container {
+  margin-top: 30px; }
+
+/*# sourceMappingURL=ListPosts.css.map */
