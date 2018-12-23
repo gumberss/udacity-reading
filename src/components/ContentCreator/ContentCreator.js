@@ -7,7 +7,8 @@ import newId from 'uuid/v1'
 
 import ListGroup from '../list-group/ListGroup'
 import TextInput from '../text-input/TextInput'
-import Button from '../button/Button'
+import { Link } from 'react-router-dom'
+
 
 class ContentCreator extends Component {
 
@@ -25,15 +26,16 @@ class ContentCreator extends Component {
     }
 
     onChangeCategorySelected = category => {
+        debugger;
         this.setState({
-            category
+            category: category
         })
     }
 
     onSubmit = e => {
         e.preventDefault();
     }
-    
+
     onTitleChange = e => {
         this.setState({
             title: e.target.value
@@ -48,7 +50,7 @@ class ContentCreator extends Component {
                     <div className="row">
                         <div className="col-sm-12 col-md-4 content-creator-item">
                             <ListGroup
-                                data={this.props.categories}
+                                data={this.props.categories.filter(x => x.name !== 'todos')}
                                 onChange={this.onChangeCategorySelected}
                                 title="Selecione a categoria"
                             />
@@ -76,6 +78,12 @@ class ContentCreator extends Component {
                             className="btn btn-outline-primary">
                             Enviar
                         </button>
+                        <Link
+                            className="btn btn-outline-primary goback__button"
+                            to="/"
+                        >
+                            Voltar
+                    </Link>
                     </div>
                 </form>
             </div>

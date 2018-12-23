@@ -7,15 +7,15 @@ import { handleGetAllCategories } from '../../actions/Categories'
 
 import ListGroup from '../list-group/ListGroup'
 
+import { Link } from 'react-router-dom'
+
 import './ListPosts.css'
 
 class ListPosts extends Component {
 
-
     state = {
         orderBy: 'ascending'
     }
-
 
     changeOrder = e => {
 
@@ -64,6 +64,13 @@ class ListPosts extends Component {
                         {orderBy === 'ascending' && 'Ordenar da menor pontuação para a maior'}
                         {orderBy === 'descending' && 'Ordenar da maior pontuação para a menor'}
                     </button>
+
+                    <Link
+                        className="btn btn-outline-primary btn-order"
+                        to="/new"
+                    >
+                    Adicionar novo post
+                    </Link>
                 </div>
                 <div className="row">
 
