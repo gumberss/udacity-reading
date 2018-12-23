@@ -1,0 +1,25 @@
+.button_container {
+  position: relative;
+  width: 100%; }
+
+.button {
+  float: right;
+  background-color: #20B2AA;
+  border: 2px solid #20B2AA;
+  color: white;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition: all .4s ease; }
+
+.button:hover {
+  background-color: white;
+  color: #20B2AA; }
+
+/*# sourceMappingURL=Button.css.map */

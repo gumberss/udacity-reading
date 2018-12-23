@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux'
 
 import './ContentCreator.css'
 
+import newId from 'uuid/v1'
+
 import ListGroup from '../list-group/ListGroup'
 import TextInput from '../text-input/TextInput'
+import Button from '../button/Button'
 
 class ContentCreator extends Component {
 
     state = {
         content: '',
-        category: {},
-        author: 'Estudante'
+        title: '',
+        category: {}
+    }
+
+    componentDidMount() {
+
+        const { dispatch } = this.props
+
+        dispatch(handleGetAllCategoriesAction())
     }
 
     onContentChange = e => {
@@ -30,7 +39,12 @@ class ContentCreator extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-
+    }
+    
+    onTitleChange = e => {
+        this.setState({
+            title: e.target.value
+        })
     }
 
     render() {
@@ -43,16 +57,23 @@ class ContentCreator extends Component {
                             <ListGroup
                                 data={this.props.categories}
                                 onChange={this.onChangeCategorySelected}
-                                title="Selecione a categoria do seu post"
+                                title="Selecione a categoria"
                             />
                         </div>
-                        <div className="col-sm-12 col-md-8 content-creator-item">
+
+                        <div className="col-sm-12 col-md-8">
                             <TextInput
-                                multiline
-                                rows={7}
+                                onChange={this.onTitleChange}
+                                value={this.state.title}
+                                title="O que gostaria de compartilhar hoje?"
+                            />
+
+                            <TextInput
+                                multiline={true}
+                                rows={5}
                                 onChange={this.onContentChange}
                                 value={this.state.content}
-                                title="O que gostaria de compartilhar hoje?"
+                                title="Descreva um pouco mais sobre isso..."
                             />
                         </div>
                     </div>
