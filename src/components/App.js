@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 
-import MainPage from '../pages/main-page/MainPage'
+import MainPage from '../screen/mainPage/MainPage'
 
 
 class App extends Component {

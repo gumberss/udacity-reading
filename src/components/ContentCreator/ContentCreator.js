@@ -17,13 +17,6 @@ class ContentCreator extends Component {
         category: {}
     }
 
-    componentDidMount() {
-
-        const { dispatch } = this.props
-
-        dispatch(handleGetAllCategoriesAction())
-    }
-
     onContentChange = e => {
 
         this.setState({
