@@ -78,6 +78,7 @@ class ListPosts extends Component {
                         <CardPost
                             key={postdata.id}
                             postId={postdata.id}
+                            showDetails
                         />
                     ))}
 

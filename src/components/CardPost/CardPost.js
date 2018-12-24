@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { TiThumbsUp, TiThumbsDown, TiMessages, TiInfoLargeOutline } from 'react-icons/ti'
+import { TiThumbsUp, TiThumbsDown, TiMessages, TiInfoLargeOutline, TiEdit } from 'react-icons/ti'
 
 import './CardPost.css'
 
@@ -28,15 +28,25 @@ class CardPost extends Component {
 
     }
 
-    render() {
-        //                    <p className="card-text">{post.body}</p>
+    onEdit = e => {
+
+    }
+
+    getDetailsUrl = () => {
+
         const { post } = this.props
 
+        return `${post.category}/${post.id}`
+    }
+
+    render() {
+        const { post, canEdit, showBody, styles, showDetails } = this.props
+
         return (
-            <div className="card post-card" style={{ width: "18rem" }}>
+            <div className="card post-card" style={styles}>
                 <div className="card-body">
                     <h5 className="card-title">{post.title}</h5>
-
+                    {showBody && (<p className="card-text">{post.body}</p>)}
                     <p className="card-text">By: {post.author}</p>
                 </div>
                 <div className="card-action__butons">
@@ -53,11 +63,7 @@ class CardPost extends Component {
                                 color="blue"
                                 onClick={this.onDetails}
                             />
-
-
                         </div>
-
-
                         <TiThumbsUp
                             size={22}
                             color="green"
@@ -76,11 +82,22 @@ class CardPost extends Component {
                     </div>
 
                     <div>
-                        <TiInfoLargeOutline
+
+                        {showDetails && (<Link
+                            to={this.getDetailsUrl()}
+                        >
+                            <TiInfoLargeOutline
+                                size={22}
+                                color="blue"
+                                onClick={this.onDetails}
+                            />
+                        </Link>)}
+
+                        {canEdit && (<TiEdit
                             size={22}
                             color="blue"
-                            onClick={this.onDetails}
-                        />
+                            onClick={this.onEdit}
+                        />)}
                     </div>
                 </div>
             </div>
