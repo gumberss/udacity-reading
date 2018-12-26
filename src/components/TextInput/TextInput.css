@@ -54,6 +54,8 @@
   transition: all .15s ease; }
 
 .text-input__div {
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  display: flex;
+  flex: 1 1 0%; }
 
 /*# sourceMappingURL=TextInput.css.map */

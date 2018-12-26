@@ -13,14 +13,21 @@ export default class ListGroup extends Component {
             selectedName: selectedData.name
         })
 
-        const { onSelect } = this.props
+        const { onChange } = this.props
 
-        onSelect && onSelect(selectedData)
+        onChange && onChange(selectedData)
     }
-
-    componentWillReceiveProps({ data }) {
-        if (data && data.length) 
-            this.onSelect(data[0])
+    
+    componentWillReceiveProps({ data, initial }){
+        if (data && data.length && !this.state.selectedName){
+            this.onSelect(initial || data[0])
+        } 
+    }
+     
+    componentDidMount() {
+        const { data, initial } = this.props
+        if (data && data.length && !this.state.selectedName) 
+            this.onSelect(initial || data[0])
     }
 
     render() {

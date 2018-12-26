@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,uBAAuB;EACnB,MAAM,EAAE,GAAG;;AAGf,2BAA2B;EACvB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,QAAQ;EACzB,MAAM,EAAE,GAAG",
+"sources": ["CommentCreator.scss"],
+"names": [],
+"file": "CommentCreator.css"
+}

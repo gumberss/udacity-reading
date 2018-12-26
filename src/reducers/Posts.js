@@ -1,4 +1,4 @@
-import { GET_ALL_POSTS, RECEIVE_POST } from '../actions/Posts'
+import { GET_ALL_POSTS, RECEIVE_POST, ADD_NEW_POST } from '../actions/Posts'
 
 export default function posts(state = {}, action) {
 

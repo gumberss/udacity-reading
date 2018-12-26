@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TiThumbsUp, TiThumbsDown, TiMessages, TiInfoLargeOutline, TiEdit } from 'react-icons/ti'
+import VoteScore from '../VoteScore/VoteScore'
 
 import './CardPost.css'
 
@@ -51,7 +52,7 @@ class CardPost extends Component {
                 </div>
                 <div className="card-action__butons">
 
-                    <div className="vote-score__div">
+                    <div className="buttons__container">
 
                         <div className="details-content">
 
@@ -64,21 +65,12 @@ class CardPost extends Component {
                                 onClick={this.onDetails}
                             />
                         </div>
-                        <TiThumbsUp
-                            size={22}
-                            color="green"
-                            onClick={this.upVote}
-                        />
 
-                        <span style={{ color: post.voteScore >= 0 ? 'green' : 'red' }}>
-                            {post.voteScore}
-                        </span>
-
-                        <TiThumbsDown
-                            size={22}
-                            color="red"
-                            onClick={this.downVote}
-                        />
+                          <VoteScore
+                        upEvent={this.upVote}
+                        downEvent={this.downVote}
+                        score={post.voteScore}
+                    />
                     </div>
 
                     <div>

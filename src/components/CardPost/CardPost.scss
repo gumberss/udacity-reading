@@ -1,7 +1,7 @@
 .post-card{
     margin: 5px; 
     padding-bottom: 3px;
-    width: 18rem;
+    width: 17rem;
 }
 
 .card-action__butons{
@@ -10,12 +10,6 @@
     justify-content: space-between;
     padding: 0px 16px;
 
-}
-
-.vote-score__div {
-    display: flex;
-    width: 140px;
-    justify-content: space-around;
 }
 
 .details-content{
@@ -27,4 +21,9 @@
     justify-content: space-between;
     display: flex;
     flex-flow: column;
+}
+
+.buttons__container{
+    flex-direction: row;
+    display: flex;
 }

@@ -6,8 +6,9 @@ import './ContentCreator.css'
 import newId from 'uuid/v1'
 
 import ListGroup from '../list-group/ListGroup'
-import TextInput from '../text-input/TextInput'
+import TextInput from '../TextInput/TextInput'
 import { Link } from 'react-router-dom'
+import { handleNewPost } from '../../actions/Posts'
 
 
 class ContentCreator extends Component {
@@ -26,7 +27,7 @@ class ContentCreator extends Component {
     }
 
     onChangeCategorySelected = category => {
-        debugger;
+        
         this.setState({
             category: category
         })
@@ -34,6 +35,25 @@ class ContentCreator extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+        const { title, content, category } = this.state
+        const { dispatch } = this.props
+        const nextAction = () =>
+            this.setState({
+                content: '',
+                title: '',
+                category: {}
+            })
+
+        const post = {
+            id: newId(),
+            timestamp: Date.now(),
+            title: title,
+            body: content,
+            author: 'studant',
+            category: category.name
+        }
+
+        dispatch(handleNewPost(post, nextAction))
     }
 
     onTitleChange = e => {
