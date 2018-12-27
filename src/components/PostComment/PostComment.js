@@ -20,11 +20,11 @@ class PostComment extends Component {
     }
 
     componentDidMount() {
-        
+
         const { comment } = this.props
 
         this.setState({
-            newComment : comment ? comment.body : ''
+            newComment: comment ? comment.body : ''
         })
     }
 
@@ -68,7 +68,7 @@ class PostComment extends Component {
 
     onEdit = e => {
         e.preventDefault()
-        const { dispatch, comment } = this.props   
+        const { dispatch, comment } = this.props
         const { newComment } = this.state
 
         dispatch(handleEditComment(comment.id, newComment))
@@ -77,11 +77,11 @@ class PostComment extends Component {
     }
 
     renderEditComment = () => {
-        const { comment, styles, id } = this.props
-        const { inEdit, newComment } = this.state
+        const { id } = this.props
+        const { newComment } = this.state
 
         return (
-            <form onSubmit={this.onEdit}> 
+            <form onSubmit={this.onEdit}>
                 <div clasName="row">
                     <TextInput
                         onChange={this.onChangeComment}
@@ -107,8 +107,8 @@ class PostComment extends Component {
     }
 
     render() {
-        const { comment, styles, id } = this.props
-        const { inEdit, newComment } = this.state
+        const { comment, styles } = this.props
+        const { inEdit } = this.state
 
         return (
             <div className="card post-card" style={styles}>
@@ -129,19 +129,19 @@ class PostComment extends Component {
                         score={comment.voteScore}
                     />
 
-                   <div>
-                   <TiEdit
-                        size={22}
-                        color="blue"
-                        onClick={this.onChangeToEdit}
-                    />
+                    <div>
+                        <TiEdit
+                            size={22}
+                            color="blue"
+                            onClick={this.onChangeToEdit}
+                        />
 
-                      <TiDocumentDelete
-                        size={22}
-                        color="red"
-                        onClick={this.onDelete}
-                    />
-                   </div>
+                        <TiDocumentDelete
+                            size={22}
+                            color="red"
+                            onClick={this.onDelete}
+                        />
+                    </div>
 
                 </div>
             </div>

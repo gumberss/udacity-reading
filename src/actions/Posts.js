@@ -51,3 +51,20 @@ export function handleEditPost(postId, title, body, nextAction) {
             })
     }
 }
+
+export function handleDeletePost(post) {
+    return dispatch => {
+        post.deleted = true
+
+        dispatch(receivePost(post))
+
+        call(`posts/${post.id}`, 'delete')
+            .then(a => console.log(a))
+            .catch(err => {
+                post.deleted = false
+
+                dispatch(receivePost(post))
+            })
+
+    }
+}

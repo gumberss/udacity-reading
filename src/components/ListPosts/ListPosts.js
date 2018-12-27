@@ -90,7 +90,9 @@ class ListPosts extends Component {
 
 const mapStateToProps = ({ posts,categories }) => ({
 
-    postDatas: Object.keys(posts).map(id => ({
+    postDatas: Object.keys(posts)
+    .filter(id => !posts[id].deleted)
+    .map(id => ({
         id: id,
         voteScore: posts[id].voteScore
     })),

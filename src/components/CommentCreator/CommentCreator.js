@@ -38,7 +38,6 @@ class CommentCreator extends Component {
             body: commentText,
             author: 'studant',
             parentId: parent.id,
-            voteScore: 0
         }
 
         dispatch(handleNewComment(comment, nextAction))

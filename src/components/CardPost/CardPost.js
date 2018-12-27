@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { TiThumbsUp, TiThumbsDown, TiMessages, TiInfoLargeOutline, TiEdit } from 'react-icons/ti'
+import { TiDocumentDelete, TiMessages, TiInfoLargeOutline, TiEdit } from 'react-icons/ti'
 import VoteScore from '../VoteScore/VoteScore'
 
 import './CardPost.css'
 
-import { handleVotePost } from '../../actions/Posts'
+import { handleVotePost, handleDeletePost } from '../../actions/Posts'
 
 class CardPost extends Component {
 
@@ -25,12 +25,12 @@ class CardPost extends Component {
         dispatch(handleVotePost(post.id, false))
     }
 
-    onDetails = e => {
+    onDelete = e => {
+        e.preventDefault()
 
-    }
+        const { dispatch, post } = this.props
 
-    onEdit = e => {
-
+        dispatch(handleDeletePost(post))
     }
 
     getDetailsUrl = () => {
@@ -68,7 +68,6 @@ class CardPost extends Component {
                             <TiMessages
                                 size={22}
                                 color="blue"
-                                onClick={this.onDetails}
                             />
                         </div>
 
@@ -87,7 +86,6 @@ class CardPost extends Component {
                             <TiInfoLargeOutline
                                 size={22}
                                 color="blue"
-                                onClick={this.onDetails}
                             />
                         </Link>)}
 
@@ -97,9 +95,14 @@ class CardPost extends Component {
                             <TiEdit
                                 size={22}
                                 color="blue"
-                                onClick={this.onEdit}
                             />
-                        </Link>)}
+                        </Link>
+                        )}
+                        <TiDocumentDelete
+                            size={22}
+                            color="red"
+                            onClick={this.onDelete}
+                        />
                     </div>
                 </div>
             </div >
