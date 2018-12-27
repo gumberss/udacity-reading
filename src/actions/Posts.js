@@ -39,6 +39,15 @@ export function handleNewPost(post, nextAction) {
     }
 }
 
-export function handlUpdatePost(post){
-
+export function handleEditPost(postId, title, body, nextAction) {
+    return dispatch => {
+        call(`posts/${postId}`, 'put', {
+            title,
+            body
+        })
+            .then(updatedPost => {
+                nextAction && nextAction()
+                return dispatch(receivePost(updatedPost))
+            })
+    }
 }

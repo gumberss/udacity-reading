@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
 import './ContentCreator.css'
-
 import newId from 'uuid/v1'
 
 import ListGroup from '../list-group/ListGroup'
 import TextInput from '../TextInput/TextInput'
 import { Link } from 'react-router-dom'
-import { handleNewPost } from '../../actions/Posts'
-
+import { handleNewPost, handleEditPost } from '../../actions/Posts'
 
 class ContentCreator extends Component {
 
@@ -27,7 +24,7 @@ class ContentCreator extends Component {
     }
 
     onChangeCategorySelected = category => {
-        
+
         this.setState({
             category: category
         })
@@ -35,13 +32,35 @@ class ContentCreator extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+
+        const { isEdit } = this.props
+
+        isEdit ? this.editPost() : this.addNewPost()
+    }
+
+    onTitleChange = e => {
+        this.setState({
+            title: e.target.value
+        })
+    }
+
+    editPost = () => {
+        const { title, content } = this.state
+        const { dispatch, post, goBack } = this.props
+
+        dispatch(handleEditPost(post.id, title, content, goBack))
+    }
+
+    addNewPost = () => {
         const { title, content, category } = this.state
         const { dispatch } = this.props
+
+        if(!title || !content) return
+
         const nextAction = () =>
             this.setState({
                 content: '',
-                title: '',
-                category: {}
+                title: ''
             })
 
         const post = {
@@ -56,13 +75,21 @@ class ContentCreator extends Component {
         dispatch(handleNewPost(post, nextAction))
     }
 
-    onTitleChange = e => {
-        this.setState({
-            title: e.target.value
-        })
+
+    componentDidMount() {
+        const { isEdit, categories, post } = this.props
+
+        if (isEdit) {
+            this.setState({
+                content: post.body,
+                title: post.title,
+                category: categories.find(x => x.name === post.category)
+            })
+        }
     }
 
     render() {
+        const { initialCategory, isEdit } = this.props
 
         return (
             <div id="content-creator">
@@ -73,6 +100,7 @@ class ContentCreator extends Component {
                                 data={this.props.categories.filter(x => x.name !== 'todos')}
                                 onChange={this.onChangeCategorySelected}
                                 title="Selecione a categoria"
+                                initial={initialCategory}
                             />
                         </div>
 
@@ -96,7 +124,7 @@ class ContentCreator extends Component {
                         <button
                             type="submit"
                             className="btn btn-outline-primary">
-                            Enviar
+                            {isEdit && 'Editar' || 'Enviar'}
                         </button>
                         <Link
                             className="btn btn-outline-primary goback__button"
@@ -111,9 +139,15 @@ class ContentCreator extends Component {
     }
 }
 
-function mapStateToProps({ categories }) {
+const mapStateToProps = ({ categories, posts }, { postId }) => {
+
+    var post = posts[postId]
+
     return {
-        categories: Object.values(categories)
+        categories: Object.values(categories),
+        post: post,
+        initialCategory: post && Object.values(categories).find(x => x.name === post.category) || categories[0],
+        isEdit: !!post
     }
 }
 

@@ -40,6 +40,12 @@ class CardPost extends Component {
         return `${post.category}/${post.id}`
     }
 
+    getEditUrl = () => {
+        const { post } = this.props
+
+        return `/new/${post.id}`
+    }
+
     render() {
         const { post, canEdit, showBody, styles, showDetails } = this.props
 
@@ -66,11 +72,11 @@ class CardPost extends Component {
                             />
                         </div>
 
-                          <VoteScore
-                        upEvent={this.upVote}
-                        downEvent={this.downVote}
-                        score={post.voteScore}
-                    />
+                        <VoteScore
+                            upEvent={this.upVote}
+                            downEvent={this.downVote}
+                            score={post.voteScore}
+                        />
                     </div>
 
                     <div>
@@ -85,14 +91,18 @@ class CardPost extends Component {
                             />
                         </Link>)}
 
-                        {canEdit && (<TiEdit
-                            size={22}
-                            color="blue"
-                            onClick={this.onEdit}
-                        />)}
+                        {canEdit && (<Link
+                            to={this.getEditUrl()}
+                        >
+                            <TiEdit
+                                size={22}
+                                color="blue"
+                                onClick={this.onEdit}
+                            />
+                        </Link>)}
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }

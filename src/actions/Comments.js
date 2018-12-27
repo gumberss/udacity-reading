@@ -40,3 +40,30 @@ export function handleNewComment(comment, onCreateAction){
         })
     }
 }
+
+export function handleEditComment(commentId, commentContent){
+
+    return dispatch => {
+        call(`comments/${commentId}`, 'put', {
+            body:commentContent
+        })
+        .then(comment => {
+            return dispatch(receiveComment(comment))
+        })
+    }
+}
+
+export function handleDeleteComment(comment, nextAction){
+
+    return dispatch => {
+        comment.deleted = true
+        dispatch(receiveComment(comment))
+
+        call(`comments/${comment.id}`, 'delete')
+        .then(nextAction)
+        .catch(() => {
+            comment.deleted = false
+            dispatch(receiveComment(comment))
+        })
+    }
+}

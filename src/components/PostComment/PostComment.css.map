@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,eAAe;EACX,aAAa,EAAE,IAAI;;AAGvB,gCAAgC;EAC5B,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,QAAQ;EACzB,YAAY,EAAE,GAAG;;AAGrB,YAAY;EACR,WAAW,EAAE,GAAG",
+"sources": ["PostComment.scss"],
 "names": [],
 "file": "PostComment.css"
 }

@@ -48,7 +48,7 @@ const mapStateToProps = ({ comments }, { match }) => {
 
     return {
         commentIds: Object.keys(comments)
-            .filter(commentId => comments[commentId].parentId === postId)
+            .filter(commentId => comments[commentId].parentId === postId && !comments[commentId].deleted)
             .sort((a, b) => comments[b].timestamp - comments[a].timestamp)
     };
 }

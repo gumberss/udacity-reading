@@ -6,11 +6,11 @@ export default class ContentCreator extends Component {
 
   render() {
 
-    const { onChange, value, multiline, rows, title }  = this.props
+    const { onChange, value, multiline, rows, title, inputId }  = this.props
 
     return (
         <div className="text-input__div">
-            <label htmlFor="inp" className="input-container">
+            <label htmlFor={inputId || "inp"} className="input-container">
 
                 {multiline && (
                     <textarea
@@ -18,7 +18,7 @@ export default class ContentCreator extends Component {
                         value={value} 
                         onChange={onChange}
                         type="text" 
-                        id="inp" 
+                        id={ inputId || "inp" }
                         placeholder="&nbsp;"
                         autoComplete="off"
                         style={{resize: "none"}}
@@ -31,7 +31,7 @@ export default class ContentCreator extends Component {
                         value={value} 
                         onChange={onChange}
                         type="text" 
-                        id="inp" 
+                        id={inputId || "inp" }
                         placeholder="&nbsp;"
                         autoComplete="off"
                     />
