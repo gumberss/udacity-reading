@@ -1,6 +1,6 @@
 # Projeto Postinator
 
-Este é o projeto POstinator desenvolvido no Nanodegree da Udacity pelo Gustavo Marin Suppi. O intuíto do mesmo é permitir que os usuários compartilhem posts e possam comentar sobre os posts publicados.
+Este é o projeto Postinator desenvolvido no Nanodegree da Udacity pelo Gustavo Marin Suppi. O intuíto do mesmo é permitir que os usuários compartilhem posts e possam comentar sobre os posts publicados.
 
 ## Configuração
 
