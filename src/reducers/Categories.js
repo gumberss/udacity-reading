@@ -10,8 +10,8 @@ export default function categories(state = {}, action) {
 
             return {
                 ...state,
-                ...ArrayToDictionary(action.categories, 'name'),
-                ...defaultCategory
+                ...defaultCategory,
+                ...ArrayToDictionary(action.categories, 'name')
             }
         default:
             return state

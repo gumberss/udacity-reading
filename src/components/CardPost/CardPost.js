@@ -28,9 +28,11 @@ class CardPost extends Component {
     onDelete = e => {
         e.preventDefault()
 
-        const { dispatch, post } = this.props
+        const { dispatch, post, onDelete } = this.props
 
         dispatch(handleDeletePost(post))
+
+        onDelete && onDelete(post)
     }
 
     getDetailsUrl = () => {

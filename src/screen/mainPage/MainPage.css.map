@@ -1,7 +1,7 @@
 {
 "version": 3,
 "mappings": "AAAA,UAAU;EACN,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,QAAQ;;AAGrB,OAAO;EACH,aAAa,EAAE,cAAc;EAC7B,UAAU,EAAE,cAAc;EAC1B,OAAO,EAAE,QAAQ;EACjB,MAAM,EAAE,QAAQ;EAChB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;;AAGlC,qBAAqB;EACjB,UAAU,EAAE,IAAI",
-"sources": ["ListPosts.scss"],
+"sources": ["MainPage.scss"],
 "names": [],
-"file": "ListPosts.css"
+"file": "MainPage.css"
 }

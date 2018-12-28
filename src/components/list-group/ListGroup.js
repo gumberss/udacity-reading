@@ -9,24 +9,28 @@ export default class ListGroup extends Component {
     }
 
     onSelect = (selectedData) => {
+
+        const { onChange, disableChange } = this.props
+        const { selectedName } = this.state
+
+        if (selectedName && disableChange) return;
+
         this.setState({
             selectedName: selectedData.name
         })
 
-        const { onChange } = this.props
-
         onChange && onChange(selectedData)
     }
-    
-    componentWillReceiveProps({ data, initial }){
-        if (data && data.length && !this.state.selectedName){
+
+    componentWillReceiveProps({ data, initial }) {
+        if (data && data.length && !this.state.selectedName) {
             this.onSelect(initial || data[0])
-        } 
+        }
     }
-     
+
     componentDidMount() {
         const { data, initial } = this.props
-        if (data && data.length && !this.state.selectedName) 
+        if (data && data.length && !this.state.selectedName)
             this.onSelect(initial || data[0])
     }
 

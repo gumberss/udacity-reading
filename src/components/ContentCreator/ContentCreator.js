@@ -101,6 +101,7 @@ class ContentCreator extends Component {
                                 onChange={this.onChangeCategorySelected}
                                 title="Selecione a categoria"
                                 initial={initialCategory}
+                                disableChange={isEdit}
                             />
                         </div>
 

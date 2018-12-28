@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import MainPage from '../screen/mainPage/MainPage'
 import NewPost from '../screen/NewPost'
-import PostDetails from '../screen/PostDetails'
+import PostDetails from '../screen/PostDetails/PostDetails'
 
 
 class App extends Component {
@@ -13,8 +13,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={MainPage}></Route>
-          <Route path="/new/:id?" component={NewPost}></Route>
+          <Route exact path="/new/:id?" component={NewPost}></Route>
+          <Route exact path="/:category?" component={MainPage}></Route>
           <Route path="/:category/:id" component={PostDetails}></Route>
         </Switch>
       </Router>
