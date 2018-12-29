@@ -31,6 +31,13 @@ class PostDetails extends Component {
         dispatch(handleGetComments(id))
     }
 
+    goBack = () => {
+        
+        const { history } = this.props
+
+        history.goBack()
+    }
+
     render() {
         const { id } = this.props.match.params
         const { commentIds, findedPost } = this.props
