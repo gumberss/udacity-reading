@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { handleGetComments } from '../../actions/Comments'
 import { handleGetPost } from '../../actions/Posts'
-
+import { Link } from 'react-router-dom'
 import './PostDetails.css'
 
 import CardPost from '../../components/CardPost/CardPost'
@@ -31,12 +31,6 @@ class PostDetails extends Component {
         dispatch(handleGetComments(id))
     }
 
-    goBack = () => {
-        const { history } = this.props
-
-        history.goBack()
-    }
-
     render() {
         const { id } = this.props.match.params
         const { commentIds, findedPost } = this.props
@@ -53,13 +47,12 @@ class PostDetails extends Component {
                             canEdit
                             showBody
                         />
-                        <button
-                            type="submit"
+                          <Link
                             className="btn btn-outline-primary details-go-back__button"
-                            onClick={this.goBack}
+                            to="/"
                         >
                             Voltar
-                        </button>
+                        </Link>
                         <hr />
                         <CommentCreator
                             postId={id}
