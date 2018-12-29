@@ -84,7 +84,7 @@ class PostComment extends Component {
 
         return (
             <form onSubmit={this.onEdit}>
-                <div className="row">
+                <div className="row new-comment__input">
                     <TextInput
                         onChange={this.onChangeComment}
                         value={newComment}
