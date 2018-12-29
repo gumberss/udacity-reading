@@ -12,13 +12,15 @@ import { receivePost } from '../../actions/Posts'
 class CommentCreator extends Component {
 
     state = {
-        commentText: ''
+        commentText: '',
+        showError: false
     }
 
     onTextChange = e => {
 
         this.setState({
-            commentText: e.target.value
+            commentText: e.target.value,
+            showError: false
         })
     }
 
@@ -27,7 +29,12 @@ class CommentCreator extends Component {
 
         const { commentText } = this.state
         
-        if(!commentText) return;
+        if(!commentText) {
+            this.setState({
+                showError: true
+            })
+            return;
+        }
 
         const nextAction = () => this.setState({ commentText: '' })
         const { parent, dispatch } = this.props
@@ -49,7 +56,7 @@ class CommentCreator extends Component {
 
     render() {
 
-        const { commentText } = this.state
+        const { commentText, showError } = this.state
 
         return (
             <form className="column" onSubmit={this.onSubmitComment}>
@@ -63,6 +70,8 @@ class CommentCreator extends Component {
                     />
                 </div>
                 <div className="row comment-buttons__container">
+                { showError && (<p className="error-message">É necessário preencher o campo para editar o comentário </p>) }
+
                     <button
                         type="submit"
                         className="btn btn-outline-primary"

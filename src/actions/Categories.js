@@ -9,10 +9,12 @@ function getCategories(categories) {
     }
 }
 
-export function handleGetAllCategories() {
+export function handleGetAllCategories(nextAction) {
     return dispatch => {
         return call('categories')
-            .then(x => dispatch(getCategories(x.categories)))
-
+            .then(x => {
+                nextAction()
+                dispatch(getCategories(x.categories))
+            })
     }
 }

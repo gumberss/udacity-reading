@@ -6,7 +6,10 @@ Este é o projeto Postinator desenvolvido no Nanodegree da Udacity pelo Gustavo 
 
 Para iniciar o desenvolvimento:
 
-* Clone o projeto com `git clone https://github.com/gumberss/udacity-reading.git`
+* Clone o servidor do projeto com `git clone https://github.com/gumberss/reactnd-project-readable-starter`
+* Instale as dependências com `yarn install`
+* Inicie o ambiente de desenvolvimento com `yarn start`
+* Clone o projeto Web com `git clone https://github.com/gumberss/udacity-reading.git`
 * Instale as dependências com `yarn install`
 * Inicie o ambiente de desenvolvimento com `yarn start`
 

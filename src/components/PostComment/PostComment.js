@@ -13,10 +13,9 @@ import './PostComment.css'
 
 class PostComment extends Component {
 
-
     state = {
         inEdit: false,
-        newComment: ''
+        newComment: '',
     }
 
     componentDidMount() {
@@ -36,7 +35,8 @@ class PostComment extends Component {
 
     onChangeComment = e => {
         this.setState({
-            newComment: e.target.value
+            newComment: e.target.value,
+            showError: false
         })
     }
 
@@ -76,13 +76,15 @@ class PostComment extends Component {
         this.onChangeToEdit()
     }
 
+    onCancelEdit = () => this.onChangeToEdit()
+
     renderEditComment = () => {
         const { id } = this.props
         const { newComment } = this.state
 
         return (
             <form onSubmit={this.onEdit}>
-                <div clasName="row">
+                <div className="row">
                     <TextInput
                         onChange={this.onChangeComment}
                         value={newComment}
@@ -92,8 +94,10 @@ class PostComment extends Component {
                 </div>
                 <div className="row edit-comment-buttons__container">
                     <button
-                        type="submit"
-                        className="btn btn-outline-primary edit-buttom">
+                        type="button"
+                        className="btn btn-outline-primary edit-buttom"
+                        onClick={this.onCancelEdit}
+                    >
                         Cancelar
                     </button>
                     <button

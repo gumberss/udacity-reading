@@ -19,7 +19,8 @@ export function receivePost(post) {
 }
 
 export function handleGetAllPosts() {
-    return dispatch => call('posts').then(posts => dispatch(getAllPosts(mapArrayToDictionary(posts))))
+    return dispatch => call('posts')
+        .then(posts => dispatch(getAllPosts(mapArrayToDictionary(posts))))
 }
 
 export function handleVotePost(id, isPositive) {
@@ -59,7 +60,6 @@ export function handleDeletePost(post) {
         dispatch(receivePost(post))
 
         call(`posts/${post.id}`, 'delete')
-            .then(a => console.log(a))
             .catch(err => {
                 post.deleted = false
 
@@ -67,4 +67,12 @@ export function handleDeletePost(post) {
             })
 
     }
+}
+
+export function handleGetPost(id, nextAction) {
+    return dispatch =>
+        call(`posts/${id}`, 'get')
+            .then(post => dispatch(receivePost(post)) && nextAction && nextAction())
+            .catch(() =>  nextAction && nextAction())
+            
 }

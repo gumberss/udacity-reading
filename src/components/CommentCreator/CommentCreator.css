@@ -6,4 +6,11 @@
   justify-content: flex-end;
   margin: 0px; }
 
+.error-message {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  align-self: center;
+  color: red;
+  margin-right: 10px; }
+
 /*# sourceMappingURL=CommentCreator.css.map */

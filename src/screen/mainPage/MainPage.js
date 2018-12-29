@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import CardPost from '../../components/CardPost/CardPost'
 import { handleGetAllPosts } from '../../actions/Posts'
-import { handleGetAllCategories } from '../../actions/Categories'
 
 import ListGroup from '../../components/list-group/ListGroup'
 
@@ -27,9 +26,8 @@ class MainPage extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, history } = this.props
+    const { dispatch } = this.props
 
-    dispatch(handleGetAllCategories())
     dispatch(handleGetAllPosts())
   }
 

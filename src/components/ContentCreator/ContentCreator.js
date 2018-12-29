@@ -13,13 +13,15 @@ class ContentCreator extends Component {
     state = {
         content: '',
         title: '',
-        category: {}
+        category: {},
+        showError: false
     }
 
     onContentChange = e => {
 
         this.setState({
-            content: e.target.value
+            content: e.target.value,
+            showError: false
         })
     }
 
@@ -34,13 +36,23 @@ class ContentCreator extends Component {
         e.preventDefault();
 
         const { isEdit } = this.props
+        const { title, content } = this.state
+
+        if (!title || !content) {
+            this.setState({
+                showError: true
+            })
+
+            return;
+        }
 
         isEdit ? this.editPost() : this.addNewPost()
     }
 
     onTitleChange = e => {
         this.setState({
-            title: e.target.value
+            title: e.target.value,
+            showError: false
         })
     }
 
@@ -54,8 +66,6 @@ class ContentCreator extends Component {
     addNewPost = () => {
         const { title, content, category } = this.state
         const { dispatch } = this.props
-
-        if(!title || !content) return
 
         const nextAction = () =>
             this.setState({
@@ -75,7 +85,6 @@ class ContentCreator extends Component {
         dispatch(handleNewPost(post, nextAction))
     }
 
-
     componentDidMount() {
         const { isEdit, categories, post } = this.props
 
@@ -90,6 +99,7 @@ class ContentCreator extends Component {
 
     render() {
         const { initialCategory, isEdit } = this.props
+        const { showError } = this.state
 
         return (
             <div id="content-creator">
@@ -132,7 +142,8 @@ class ContentCreator extends Component {
                             to="/"
                         >
                             Voltar
-                    </Link>
+                        </Link>
+                        { showError && (<p className="error-message">Por favor, preencha todos os campos</p>) }
                     </div>
                 </form>
             </div>

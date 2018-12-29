@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import { handleGetComments } from '../../actions/Comments'
+import { handleGetPost } from '../../actions/Posts'
 
 import './PostDetails.css'
 
@@ -12,10 +13,20 @@ import NotFound from '../NotFound/NotFound'
 
 class PostDetails extends Component {
 
+    state = {
+        searchInServer: false
+    }
+
     componentDidMount() {
 
         const { id } = this.props.match.params
-        const { dispatch } = this.props
+        const { dispatch, findedPost } = this.props
+
+        const nextAction = () => this.setState({
+                searchInServer: true
+            })
+
+        !findedPost && dispatch(handleGetPost(id, nextAction))
 
         dispatch(handleGetComments(id))
     }
@@ -28,11 +39,12 @@ class PostDetails extends Component {
 
     render() {
         const { id } = this.props.match.params
-        const { commentIds, existPost } = this.props
+        const { commentIds, findedPost } = this.props
+        const { searchInServer } = this.state
 
         return (
             <div>
-                {existPost && (
+                {findedPost && (
                     <div className="container">
                         <CardPost
                             postId={id}
@@ -60,7 +72,7 @@ class PostDetails extends Component {
                         />)}
                     </div>)
                 }
-                {!existPost && (<NotFound />)}
+                {!findedPost && searchInServer && (<NotFound />)}
             </div>
 
         )
@@ -74,7 +86,7 @@ const mapStateToProps = ({ comments, posts }, { match }) => {
         commentIds: Object.keys(comments)
             .filter(commentId => comments[commentId].parentId === postId && !comments[commentId].deleted)
             .sort((a, b) => comments[b].timestamp - comments[a].timestamp),
-        existPost: !!posts[postId]
+        findedPost: !!posts[postId]
     };
 }
 
